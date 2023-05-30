@@ -1,0 +1,61 @@
+version: '3.5'
+# приближенный к продакшену конфиг
+services:
+    # PHP fpm
+    introductory-app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: always
+        tty: true
+        working_dir: /var/www/application
+        env_file:
+            - .env
+        volumes:
+            - .:/var/www/application
+        networks:
+            - application-network
+        container_name: introductory-app
+         
+    # Nginx Service
+    introductory-nginx:
+        image: nginx:alpine
+        container_name: introductory-nginx
+        restart: always
+        tty: true
+        environment:
+            - "APPLICATION_UPSTREAM=introductory-app:9000"
+        volumes:
+            - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+            - ./docker/nginx/templates/:/etc/nginx/templates/
+            - ./web/:/var/www/application/web/
+        networks:
+            - application-network
+        ports:
+            - "80:80"
+            - "443:443"
+             
+    # MySQL Service
+    introductory-mysql:
+        # image: library/mysql:8.0
+        image: mysql
+        container_name: introductory-mysql
+        restart: always
+        tty: true
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: app_db
+            MYSQL_USER: admin
+            MYSQL_PASSWORD: 111111
+            MYSQL_ROOT_PASSWORD: admin
+            SERVICE_NAME: mysql
+        networks:
+            - application-network
+        volumes:
+            - ./sql-scripts:/docker-entrypoint-initdb.d/
+
+#Docker Networks
+networks:
+    application-network:
+        driver: bridge
