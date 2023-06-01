@@ -8,11 +8,21 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'layout' => 'order',
+    'name' => 'orders with filter',
+    'language' => 'en',
+    'defaultRoute' => 'test/index',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'formatter' => [
+            // 'dateFormat' => 'dd.MM.yyyy',
+            // 'dateFormat' => 'php:d F Y',
+            'dateFormat' => 'yyyy-MM-dd',
+            'timeFormat' => 'HH:m:s',
+            // 'datetimeFormat' => 'yyyy-MM-dd H:m:s',
+       ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '6xAMJPWwPp1Z1dWcxdJwy_kUXQAxuGJG',
@@ -51,6 +61,12 @@ $config = [
             ],
         ],
         */
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+            ],
+        ],
     ],
     'params' => $params,
 ];
@@ -68,7 +84,8 @@ if (YII_ENV_DEV) {
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        // 'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['*'],
     ];
 }
 
