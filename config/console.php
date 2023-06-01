@@ -13,6 +13,7 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
         '@tests' => '@app/tests',
+        '@order' => '@app/modules/order/migrations'
     ],
     'components' => [
         'cache' => [
@@ -27,6 +28,13 @@ $config = [
             ],
         ],
         'db' => $db,
+    ],
+    'controllerMap' => [
+        'migrate-module' => [
+            'class' => 'yii\console\controllers\MigrateController',
+            // 'migrationTable' => 'my_custom_migrate_table',
+            'migrationPath' => '@order',
+        ],
     ],
     'params' => $params,
     /*

@@ -17,11 +17,8 @@ $config = [
     ],
     'components' => [
         'formatter' => [
-            // 'dateFormat' => 'dd.MM.yyyy',
-            // 'dateFormat' => 'php:d F Y',
             'dateFormat' => 'yyyy-MM-dd',
             'timeFormat' => 'HH:m:s',
-            // 'datetimeFormat' => 'yyyy-MM-dd H:m:s',
        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -67,6 +64,21 @@ $config = [
             'rules' => [
             ],
         ],
+    ],
+    'modules' => [
+        'order' => [
+            'class' => 'app\modules\order\Module',
+            // ... other configurations for the module ...
+        ],
+    ],
+    'migrate'=>[
+        'class'=>'yii\console\controllers\MigrateController',
+        'migrationPath' => null,
+        'migrationNamespaces' => [
+            'common\modules\content\migrations',
+            'common\modules\base\migrations',
+        ],
+        'migrationTable'=>'{{%system_migration}}',
     ],
     'params' => $params,
 ];
