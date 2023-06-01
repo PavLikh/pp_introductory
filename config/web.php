@@ -71,15 +71,15 @@ $config = [
             // ... other configurations for the module ...
         ],
     ],
-    'migrate'=>[
-        'class'=>'yii\console\controllers\MigrateController',
-        'migrationPath' => null,
-        'migrationNamespaces' => [
-            'common\modules\content\migrations',
-            'common\modules\base\migrations',
-        ],
-        'migrationTable'=>'{{%system_migration}}',
-    ],
+    // 'migrate'=>[
+    //     'class'=>'yii\console\controllers\MigrateController',
+    //     'migrationPath' => null,
+    //     'migrationNamespaces' => [
+    //         'common\modules\content\migrations',
+    //         'common\modules\base\migrations',
+    //     ],
+    //     'migrationTable'=>'{{%system_migration}}',
+    // ],
     'params' => $params,
 ];
 

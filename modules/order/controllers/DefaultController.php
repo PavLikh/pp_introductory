@@ -8,9 +8,9 @@ use Yii;
 use yii\filters\AccessControl;
 
 use yii\data\Pagination;
-use app\models\Order;
-use app\models\Service;
-use app\models\Mode;
+use app\modules\order\models\Order;
+use app\modules\order\models\Service;
+use app\modules\order\models\Mode;
 
 /**
  * Default controller for the `ord` module
