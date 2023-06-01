@@ -25,4 +25,9 @@ class Order extends ActiveRecord
     {
         return $this->hasOne(Status::class, ['id' => 'status']);
     }
+
+    public function getModeName()
+    {
+        return $this->hasOne(Mode::class, ['id' => 'mode']);
+    }
 }
