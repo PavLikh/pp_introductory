@@ -16,6 +16,13 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'formatter' => [
+            // 'dateFormat' => 'dd.MM.yyyy',
+            // 'dateFormat' => 'php:d F Y',
+            'dateFormat' => 'yyyy-MM-dd',
+            'timeFormat' => 'HH:m:s',
+            // 'datetimeFormat' => 'yyyy-MM-dd H:m:s',
+       ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '6xAMJPWwPp1Z1dWcxdJwy_kUXQAxuGJG',

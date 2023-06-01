@@ -11,7 +11,7 @@ class m230531_114445_insert_data extends Migration
     // Use up()/down() to run migration code without a transaction.
     public function up()
     {
-        $sql = file_get_contents(__DIR__ . '/../sql-scripts/test_db_data.sql');
+        $sql = file_get_contents(__DIR__ . '/../sql-scripts/data.sql');
         $this->db->createCommand($sql)->execute();
     }
 

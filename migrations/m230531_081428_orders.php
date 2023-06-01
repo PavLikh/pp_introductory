@@ -46,6 +46,33 @@ class m230531_081428_orders extends Migration
             'mode' => $this->tinyInteger(1)->notNull()->comment('0 - Manual, 1 - Auto'),
         ]);
 
+        $this->addForeignKey(
+            'fk-order-user_id',
+            'orders',
+            'user_id',
+            'users',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-order-status_id',
+            'orders',
+            'status',
+            'status',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-order-mode_id',
+            'orders',
+            'mode',
+            'mode',
+            'id',
+            'CASCADE'
+        );
+
     }
 
     public function down()
