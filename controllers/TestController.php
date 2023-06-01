@@ -11,6 +11,8 @@ use yii\data\Pagination;
 // use app\models\LoginForm;
 use app\models\Test;
 use app\models\Order;
+use app\models\Service;
+use app\models\Mode;
 
 // use app\models\ContactForm;
 
@@ -23,6 +25,8 @@ class TestController extends Controller
         // $orders = Order::find()->limit(20)->all();
         // $orders = Order::find()->limit(20);
         $orders = Order::find();
+        $services = Service::find()->all();
+        $modes = Mode::find()->all();
         // $rows = Test::find()->limit(4)->all();
         // return $this->render('index', [
         //     'rows' => $rows
@@ -34,7 +38,7 @@ class TestController extends Controller
         ]);
 
         $orders = $orders->offset( $pagination->offset )->limit( $pagination->limit )->all();
-        return $this->render('index', compact('orders', 'rows', 'pagination'));
+        return $this->render('index', compact('orders', 'services', 'modes', 'rows', 'pagination'));
     }
 
     public function actionRows()
