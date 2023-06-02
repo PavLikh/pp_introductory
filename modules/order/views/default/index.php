@@ -13,9 +13,17 @@
 
 <?php
 use yii\widgets\LinkPager;
-
+use yii\helpers\Url;
 $this->title = Yii::$app->name;
 ?>
+<br>
+<?= $info?>
+<?= $StatusVal?>
+<br>
+<? $url = Url::current(['aaa'=>'ffff']); ?>
+<?// $url1 = Url::to(['index', 'status' => 'Pending']); ?>
+<a href="<?= $url ?>"><?= $url ?></a>
+<!-- <a href="<?//= $url1 ?>"><?//= $url1 ?></a> -->
 <nav class="navbar navbar-fixed-top navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -35,12 +43,10 @@ $this->title = Yii::$app->name;
 </nav>
 <div class="container-fluid">
   <ul class="nav nav-tabs p-b">
-    <li class="active"><a href="#">All orders</a></li>
-    <li><a href="#">Pending</a></li>
-    <li><a href="#">In progress</a></li>
-    <li><a href="#">Completed</a></li>
-    <li><a href="#">Canceled</a></li>
-    <li><a href="#">Error</a></li>
+    <li class="active"><a href="<?= Url::to(['index']); ?>">All orders</a></li>
+    <? foreach($statuses as $status) { ?>
+        <li><a href="<?= Url::to(['index', 'status' => $status->id]); ?>"><?= $status->name ?></a></li>
+    <? } ?>
     <li class="pull-right custom-search">
       <form class="form-inline" action="/admin/orders" method="get">
         <div class="input-group">
@@ -75,7 +81,7 @@ $this->title = Yii::$app->name;
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
             <li class="active"><a href="">All (894931)</a></li>
             <? foreach($services as $service) {?>
-              <li><a href=""><span class="label-id"><?= $service->id ?></span> <?= $service->name ?></a></li>
+              <li><a href="<?= Url::current(['service' => $service->id]); ?>"><span class="label-id"><?= $service->id ?></span> <?= $service->name ?></a></li>
             <? } ?>
           </ul>
         </div>
@@ -90,7 +96,7 @@ $this->title = Yii::$app->name;
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
             <li class="active"><a href="">All</a></li>
             <? foreach($modes as $mode) {?>
-              <li><a href=""><?= $mode->name ?></a></li>  
+              <li><a href="<?= Url::current(['mode' => $mode->id]); ?>"><?= $mode->name ?></a></li>  
             <? } ?>
           </ul>
         </div>
@@ -115,7 +121,6 @@ $this->title = Yii::$app->name;
       <td class="service">
         <span class="label-id"><?= $order->service->id ?></span> <?= $order->service->name ?>
       </td>
-      <!-- <td>Pending</td> -->
       <td><?= $order->statusName->name ?></td>
       <td><?= $order->modeName->name ?></td>
       <td><span class="nowrap"><?= Yii::$app->formatter->asDate( $order->created_at )?></span><span class="nowrap"><?= Yii::$app->formatter->asTime( $order->created_at )?></span></td>

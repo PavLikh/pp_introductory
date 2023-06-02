@@ -8,7 +8,8 @@ use app\assets\AppAsset;
 use yii\helpers\Html;
 
 AppAsset::register($this);
-var_dump(YII_ENV_DEV);
+echo __FILE__;
+// var_dump(YII_ENV_DEV);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

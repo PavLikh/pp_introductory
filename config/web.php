@@ -10,7 +10,7 @@ $config = [
     'layout' => 'order',
     'name' => 'orders with filter',
     'language' => 'en',
-    'defaultRoute' => 'test/index',
+    // 'defaultRoute' => 'test/index',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -62,6 +62,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                ['pattern' => '/test', 'route' => '/order/default/test'],
             ],
         ],
     ],
