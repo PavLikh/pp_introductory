@@ -15,6 +15,8 @@
 use yii\widgets\LinkPager;
 use yii\helpers\Url;
 $this->title = Yii::$app->name;
+// var_dump($orders->asd);
+// die();
 ?>
 <br>
 <?= $info?>
@@ -48,7 +50,7 @@ $this->title = Yii::$app->name;
         <li><a href="<?= Url::to(['index', 'status' => $status->id]); ?>"><?= $status->name ?></a></li>
     <? } ?>
     <li class="pull-right custom-search">
-      <form class="form-inline" action="/admin/orders" method="get">
+      <form class="form-inline" action="/order/default" method="get">
         <div class="input-group">
           <input type="text" name="search" class="form-control" value="" placeholder="Search orders">
           <span class="input-group-btn search-select-wrap">
@@ -110,10 +112,14 @@ $this->title = Yii::$app->name;
   `created_at` int NOT NULL,
   `mode` tinyint(1) NOT NULL COMMENT '0 - Manual, 1 - Auto' -->
     <? foreach($orders as $order) {?>
+      <?//var_dump($order->concatName);
+      // die();
+      ?>
       <tr>
       <td><?= $order->id ?></td>
       <!-- <td>waliullah</td> -->
-      <td><?= $order->user->first_name ?></td>
+      <td><?//= $order->user->first_name ?></td>
+      <td><?= $order->concatName ?></td>
       <!-- <td class="link">/p/BMRSv4FDevy/</td> -->
       <td><?= $order->link ?></td>
       <!-- <td>3000</td> -->

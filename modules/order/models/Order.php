@@ -6,6 +6,7 @@ use yii\db\ActiveRecord;
 
 class Order extends ActiveRecord
 {
+    public $concatName;
     public static function tableName()
     {
         return 'orders';
@@ -17,6 +18,11 @@ class Order extends ActiveRecord
     }
 
     public function getUser()
+    {
+        return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    public function getAAA()
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }
