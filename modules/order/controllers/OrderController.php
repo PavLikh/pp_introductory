@@ -16,7 +16,7 @@ use function Psy\debug;
 /**
  * Default controller for the `ord` module
  */
-class DefaultController extends Controller
+class OrderController extends Controller
 {
     /**
      * Renders the index view for the module
