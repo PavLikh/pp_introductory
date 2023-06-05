@@ -15,17 +15,9 @@
 use yii\widgets\LinkPager;
 use yii\helpers\Url;
 $this->title = Yii::$app->name;
-// var_dump($orders->asd);
-// die();
+
 ?>
-<br>
-<?= $info?>
-<?= $StatusVal?>
-<br>
-<? $url = Url::current(['aaa'=>'ffff']); ?>
-<?// $url1 = Url::to(['index', 'status' => 'Pending']); ?>
-<a href="<?= $url ?>"><?= $url ?></a>
-<!-- <a href="<?//= $url1 ?>"><?//= $url1 ?></a> -->
+
 <nav class="navbar navbar-fixed-top navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -108,21 +100,11 @@ $this->title = Yii::$app->name;
     </thead>
     <tbody>
 
-  <!-- 
-  `created_at` int NOT NULL,
-  `mode` tinyint(1) NOT NULL COMMENT '0 - Manual, 1 - Auto' -->
     <? foreach($orders as $order) {?>
-      <?//var_dump($order->concatName);
-      // die();
-      ?>
       <tr>
       <td><?= $order->id ?></td>
-      <!-- <td>waliullah</td> -->
-      <!-- <td><?//= $order->user->first_name ?></td> -->
       <td><?= $order->concatName ?></td>
-      <!-- <td class="link">/p/BMRSv4FDevy/</td> -->
       <td><?= $order->link ?></td>
-      <!-- <td>3000</td> -->
       <td><?= $order->quantity ?></td>
       <td class="service">
         <span class="label-id"><?= $order->service->id ?></span> <?= $order->service->name ?>

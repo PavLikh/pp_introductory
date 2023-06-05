@@ -8,7 +8,7 @@ use app\assets\AppAsset;
 use yii\helpers\Html;
 
 AppAsset::register($this);
-echo __FILE__;
+// echo __FILE__;
 // var_dump(YII_ENV_DEV);
 ?>
 <?php $this->beginPage() ?>
@@ -16,7 +16,6 @@ echo __FILE__;
 <!-- <html lang="en"> -->
 <html lang="<?= Yii::$app->language ?>">
 <head>
-  <!-- <meta charset="utf-8"> -->
   <meta charset="<?= Yii::$app->charset ?>">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
