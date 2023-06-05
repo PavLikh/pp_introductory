@@ -31,7 +31,7 @@ MYSQL_DATABASE=app_db
 выполнить миграцию
 
 ```bash
-docker-compose up
+docker-compose up -d
 composer install
 php yii migrate-module --interactive=0
 
