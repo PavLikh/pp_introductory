@@ -10,7 +10,7 @@ $config = [
     'layout' => 'order',
     'name' => 'orders with filter',
     'language' => 'en',
-    // 'defaultRoute' => 'test/index',
+    'defaultRoute' => 'order/default/',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -72,15 +72,6 @@ $config = [
             // ... other configurations for the module ...
         ],
     ],
-    // 'migrate'=>[
-    //     'class'=>'yii\console\controllers\MigrateController',
-    //     'migrationPath' => null,
-    //     'migrationNamespaces' => [
-    //         'common\modules\content\migrations',
-    //         'common\modules\base\migrations',
-    //     ],
-    //     'migrationTable'=>'{{%system_migration}}',
-    // ],
     'params' => $params,
 ];
 
