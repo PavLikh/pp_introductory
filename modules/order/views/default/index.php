@@ -118,7 +118,7 @@ $this->title = Yii::$app->name;
       <tr>
       <td><?= $order->id ?></td>
       <!-- <td>waliullah</td> -->
-      <td><?//= $order->user->first_name ?></td>
+      <!-- <td><?//= $order->user->first_name ?></td> -->
       <td><?= $order->concatName ?></td>
       <!-- <td class="link">/p/BMRSv4FDevy/</td> -->
       <td><?= $order->link ?></td>
