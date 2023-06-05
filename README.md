@@ -38,4 +38,4 @@ php yii migrate-module --interactive=0
 > Перед запуском нужно убедиться что выключены другие контейнеры и службы, слушающие порт 80
 
 Роут страницы c заказами:
-http://localhost/order/default
+http://localhost/order/order
