@@ -10,7 +10,8 @@ $config = [
     'layout' => 'order',
     'name' => 'orders with filter',
     'language' => 'en',
-    'defaultRoute' => 'order/order/',
+    // 'baseUrl' => 'order',
+    // 'defaultRoute' => 'order/order/',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -62,7 +63,8 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                ['pattern' => '/test', 'route' => '/order/default/test'],
+                'order' => 'order/order/index',
+                // '<module:(order)>/<action:(index)>' => '<module>/order/<action>',
             ],
         ],
     ],
@@ -73,6 +75,7 @@ $config = [
         ],
     ],
     'params' => $params,
+
 ];
 
 if (YII_ENV_DEV) {

@@ -25,8 +25,15 @@ class OrderController extends Controller
     public function actionIndex()
     {
         $model = new Order;
+        $serviceModel = new Service;
+        $modeModel = new Mode;
+        $statusModel = new Status;
+
+        $services = $serviceModel->getAll();
+        $modes = $modeModel->getAll();
+        $statuses = $statusModel->getAll();
+        
         if (isset(Yii::$app->request->get()['status'])){
-            $info = 'I have a STATUS';
             $orders = $model->getByStatus();
         } else {
             $orders = $model->getAll();
@@ -43,10 +50,6 @@ class OrderController extends Controller
         if (isset(Yii::$app->request->get()['search-type']) && !empty(Yii::$app->request->get()['search'])) {
             $orders = $model->search();
         }
-        
-        $services = Service::find()->all();
-        $modes = Mode::find()->all();
-        $statuses = Status::find()->all();
 
         $pagination = new Pagination([
             'defaultPageSize' => 5,
@@ -56,4 +59,8 @@ class OrderController extends Controller
     return $this->render('index', compact('orders', 'services', 'modes', 'statuses', 'pagination'));
     }
 
+    public function actionHa()
+    {
+        return 'Hi';
+    }
 }

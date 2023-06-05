@@ -4,7 +4,6 @@
 /** @var string $content */
 
 use app\assets\AppAsset;
-// use yii\bootstrap5\Html;
 use yii\helpers\Html;
 
 AppAsset::register($this);
