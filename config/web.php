@@ -10,18 +10,15 @@ $config = [
     'layout' => 'order',
     'name' => 'orders with filter',
     'language' => 'en',
-    'defaultRoute' => 'test/index',
+    // 'defaultRoute' => 'test/index',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
         'formatter' => [
-            // 'dateFormat' => 'dd.MM.yyyy',
-            // 'dateFormat' => 'php:d F Y',
             'dateFormat' => 'yyyy-MM-dd',
             'timeFormat' => 'HH:m:s',
-            // 'datetimeFormat' => 'yyyy-MM-dd H:m:s',
        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -65,9 +62,25 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                ['pattern' => '/test', 'route' => '/order/default/test'],
             ],
         ],
     ],
+    'modules' => [
+        'order' => [
+            'class' => 'app\modules\order\Module',
+            // ... other configurations for the module ...
+        ],
+    ],
+    // 'migrate'=>[
+    //     'class'=>'yii\console\controllers\MigrateController',
+    //     'migrationPath' => null,
+    //     'migrationNamespaces' => [
+    //         'common\modules\content\migrations',
+    //         'common\modules\base\migrations',
+    //     ],
+    //     'migrationTable'=>'{{%system_migration}}',
+    // ],
     'params' => $params,
 ];
 
