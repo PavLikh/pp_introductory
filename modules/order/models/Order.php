@@ -37,7 +37,6 @@ class Order extends ActiveRecord
     {
         $subquery = Order::find()->select(["orders.*",'concatName' => "CONCAT(first_name, ' ', last_name)"])->from('orders')->leftJoin('users', 'users.id = orders.user_id')->with('user');
         return Order::find()->from(['tb1' =>$subquery ]);
-        // return $this::find();
     }
 
     public function getByStatus()
@@ -46,11 +45,8 @@ class Order extends ActiveRecord
     }
 
     public function getByMode($model)
-    // public function getByMode($model)
     {
         return $model->andWhere(['mode' => Yii::$app->request->get()['mode']]);
-        // return $this->andWhere(['mode' => Yii::$app->request->get()['mode']]);
-        // return $this;
     }
 
     public function getByService($model)
