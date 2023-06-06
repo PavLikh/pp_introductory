@@ -123,6 +123,7 @@ class Order extends ActiveRecord
     public function pagination($orders) {
         $pagination = new Pagination([
             'defaultPageSize' => $this::DEFAULTPAGESIZE,
+            'pageSizeLimit' => [1, 100],
             'totalCount' => $orders->count()
         ]);
 
