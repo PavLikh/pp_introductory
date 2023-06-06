@@ -1,23 +1,16 @@
-<!-- <div class="ord-default-index">
-    <h1><?= $this->context->action->uniqueId ?></h1>
-    <p>
-        This is the view content for action "<?= $this->context->action->id ?>".
-        The action belongs to the controller "<?= get_class($this->context) ?>"
-        in the "<?= $this->context->module->id ?>" module.
-    </p>
-    <p>
-        You may customize this page by editing the following file:<br>
-        <code><?= __FILE__ ?></code>
-    </p>
-</div> -->
-
 <?php
+
+/** @var array $modes */
+/** @var array $orders */
+/** @var array $services */
+/** @var array $statuses */
+/** @var object $pagination */
+
 use yii\widgets\LinkPager;
 use yii\helpers\Url;
 $this->title = Yii::$app->name;
 
 ?>
-
 <nav class="navbar navbar-fixed-top navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -37,20 +30,23 @@ $this->title = Yii::$app->name;
 </nav>
 <div class="container-fluid">
   <ul class="nav nav-tabs p-b">
-    <li class="active"><a href="<?= Url::to(['index']); ?>">All orders</a></li>
+    <li class="<?= Url::to() == '/order' ? 'active' : '' ?>"><a href="<?= Url::to(['order/index']); ?>"><?= Yii::t('app', 'All orders') ?></a></li>
     <? foreach($statuses as $status) { ?>
-        <li><a href="<?= Url::to(['index', 'status' => $status->id]); ?>"><?= $status->name ?></a></li>
+        <li class="
+        <?= isset(Yii::$app->request->get()['status']) ? (Yii::$app->request->get()['status'] == $status->id ? 'active' : '') : '' ?>
+        ">
+        <a href="<?= Url::to(['index', 'status' => $status->id]); ?>"><?= Yii::t('app', $status->name) ?></a></li>
     <? } ?>
     <li class="pull-right custom-search">
-      <form class="form-inline" action="/order/default" method="get">
+      <form class="form-inline" action="/order" method="get">
         <div class="input-group">
-          <input type="text" name="search" class="form-control" value="" placeholder="Search orders">
+          <input type="text" name="search" class="form-control" value="<?= isset(Yii::$app->request->get()['search']) ? Yii::$app->request->get()['search'] : '' ?>" placeholder="Search orders">
           <span class="input-group-btn search-select-wrap">
 
             <select class="form-control search-select" name="search-type">
-              <option value="1" selected="">Order ID</option>
-              <option value="2">Link</option>
-              <option value="3">Username</option>
+              <option value="1" <?= isset(Yii::$app->request->get()['search-type']) ? (Yii::$app->request->get()['search-type'] == 1 ? 'selected=""' : '') : '' ?>>Order ID</option>
+              <option value="2" <?= isset(Yii::$app->request->get()['search-type']) ? (Yii::$app->request->get()['search-type'] == 2 ? 'selected=""' : '') : '' ?>>Link</option>
+              <option value="3" <?= isset(Yii::$app->request->get()['search-type']) ? (Yii::$app->request->get()['search-type'] == 3 ? 'selected=""' : '') : '' ?>>Username</option>
             </select>
             <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
             </span>
@@ -63,28 +59,28 @@ $this->title = Yii::$app->name;
     <thead>
     <tr>
       <th>ID</th>
-      <th>User</th>
-      <th>Link</th>
-      <th>Quantity</th>
+      <th><?= Yii::t('app', 'User') ?></th>
+      <th><?= Yii::t('app', 'Link') ?></th>
+      <th><?= Yii::t('app', 'Quantity') ?></th>
       <th class="dropdown-th">
         <div class="dropdown">
           <button class="btn btn-th btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Service
+            <?= Yii::t('app', 'Service') ?>
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li class="active"><a href="">All (894931)</a></li>
+            <li class="active"><a href="">All (<?= $pagination->totalCount ?>)</a></li>
             <? foreach($services as $service) {?>
-              <li><a href="<?= Url::current(['service' => $service->id]); ?>"><span class="label-id"><?= $service->id ?></span> <?= $service->name ?></a></li>
+              <li><a href="<?= Url::current(['service' => $service->id]) ?>"><span class="label-id"><?= $service->id ?></span> <?= $service->name ?></a></li>
             <? } ?>
           </ul>
         </div>
       </th>
-      <th>Status</th>
+      <th><?= Yii::t('app', 'Status') ?></th>
       <th class="dropdown-th">
         <div class="dropdown">
           <button class="btn btn-th btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Mode
+            <?= Yii::t('app', 'Mode') ?>
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -95,7 +91,7 @@ $this->title = Yii::$app->name;
           </ul>
         </div>
       </th>
-      <th>Created</th>
+      <th><?= Yii::t('app', 'Created') ?></th>
     </tr>
     </thead>
     <tbody>
@@ -109,7 +105,7 @@ $this->title = Yii::$app->name;
       <td class="service">
         <span class="label-id"><?= $order->service->id ?></span> <?= $order->service->name ?>
       </td>
-      <td><?= $order->statusName->name ?></td>
+      <td><?= Yii::t('app', $order->statusName->name) ?></td>
       <td><?= $order->modeName->name ?></td>
       <td><span class="nowrap"><?= Yii::$app->formatter->asDate( $order->created_at )?></span><span class="nowrap"><?= Yii::$app->formatter->asTime( $order->created_at )?></span></td>
       </tr>
