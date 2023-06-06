@@ -11,10 +11,6 @@ use yii\helpers\Url;
 $this->title = Yii::$app->name;
 
 ?>
-<p><?=Url::current()?></p>
-<p><?= Url::to() == '/order' ? 'ha': 'Ne ha'?></p>
-<p><?=Url::to(['order/index']);?></p>
-<p><?=Yii::$app->request->url?></p>
 <nav class="navbar navbar-fixed-top navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -34,13 +30,11 @@ $this->title = Yii::$app->name;
 </nav>
 <div class="container-fluid">
   <ul class="nav nav-tabs p-b">
-    <!-- <li class="<?//= Url::to() == '/order' ? 'active' : '' ?>"><a href="<?//= Url::to(['index']); ?><//?= Url::to(['order/index']); ?>">All orders</a></li> -->
     <li class="<?= Url::to() == '/order' ? 'active' : '' ?>"><a href="<?= Url::to(['order/index']); ?>"><?= Yii::t('app', 'All orders') ?></a></li>
     <? foreach($statuses as $status) { ?>
         <li class="
         <?= isset(Yii::$app->request->get()['status']) ? (Yii::$app->request->get()['status'] == $status->id ? 'active' : '') : '' ?>
         ">
-        <!-- <a href="<?//= Url::to(['index', 'status' => $status->id]); ?>"><//?= $status->name ?></a></li> -->
         <a href="<?= Url::to(['index', 'status' => $status->id]); ?>"><?= Yii::t('app', $status->name) ?></a></li>
     <? } ?>
     <li class="pull-right custom-search">
