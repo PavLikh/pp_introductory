@@ -16,6 +16,13 @@ class Order extends ActiveRecord
         return 'orders';
     }
 
+    public function rules() {
+        return [
+            [['search'], 'trim']
+        ];
+    }
+
+
     /**
      * Prepare data for view
      *
@@ -38,7 +45,8 @@ class Order extends ActiveRecord
     public function search()
     {
             $query = $this->getAll();
-            $search = Yii::$app->request->get()['search'];
+            // $search = trim(Yii::$app->request->get()['search']);
+            $search = (Yii::$app->request->get()['search']);
             $searchType = Yii::$app->request->get()['search-type'];
             if ($searchType == '1') {
                 $res = $query->where(['id' => $search]);

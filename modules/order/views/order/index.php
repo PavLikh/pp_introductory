@@ -5,10 +5,15 @@
 /** @var array $services */
 /** @var array $statuses */
 /** @var object $pagination */
+/** @var string $curSerchType */
 
+use yii\bootstrap5\ActiveForm;
 use yii\widgets\LinkPager;
 use yii\helpers\Url;
+use yii\helpers\Html;
+
 $this->title = Yii::$app->name;
+$curSerchType = isset(Yii::$app->request->get()['searchType']) ? Yii::$app->request->get()['searchType'] : '';
 
 ?>
 <nav class="navbar navbar-fixed-top navbar-default">
@@ -38,6 +43,51 @@ $this->title = Yii::$app->name;
         <a href="<?= Url::to(['index', 'status' => $status->id]); ?>"><?= Yii::t('app', $status->name) ?></a></li>
     <? } ?>
     <li class="pull-right custom-search">
+
+
+
+
+
+    
+   
+<?// $form = ActiveForm::begin(['options' => [
+  // 'class' => 'form-inline'], 
+  // 'method' => 'get',
+  // 'id' => 'searchForm',
+  // 'action'=>['/order/order/test'],
+  // 'fieldConfig'=>[
+  //   'options'=>['tag'=>false]
+  //   ]
+ // ]);?>
+
+<!-- <div class="input-group"> -->
+
+<!-- <input type="text" name="search" class="form-control" value="<?//= isset(Yii::$app->request->get()['search']) ? Yii::$app->request->get()['search'] : '' ?>" placeholder="Search orders"> -->
+
+<?// echo $form->field($modelForm, 'search', ['options'=>['id' => '', 'placeholder' => 'aaa']])->textInput(['placeholder' => "Search orders"])->label(false);?>
+    <!-- <span class="input-group-btn search-select-wrap"> -->
+
+<?
+// echo $form->field($modelForm, 'searchType')->dropdownList([1 => 'Order ID', 2 => 'item b', 3 =>'My Order ID'],
+// [
+//     'options'=>[
+//         $curSerchType => ['selected' => true]], 
+//     'class'=> 'form-control search-select',
+//     'id' => 'a',
+//     'name' => 'searchType'
+
+//   ]
+//     )->label(false);
+// echo Html::submitButton('<span class="glyphicon glyphicon-search" aria-hidden="true"></span>', ['class' => 'btn btn-default']);
+?>
+<!-- </span>
+</div> -->
+<?// $form = ActiveForm::end();?>
+
+
+<?// include 'test1.php'; ?>
+<? include 'test2.php'; ?>
+
       <form class="form-inline" action="/order" method="get">
         <div class="input-group">
           <input type="text" name="search" class="form-control" value="<?= isset(Yii::$app->request->get()['search']) ? Yii::$app->request->get()['search'] : '' ?>" placeholder="Search orders">
