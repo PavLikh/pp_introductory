@@ -34,11 +34,14 @@ $this->title = Yii::$app->name;
 </nav>
 <div class="container-fluid">
   <ul class="nav nav-tabs p-b">
-    <li class="<?= Url::to() == '/order' ? 'active' : '' ?>"><a href="<?//= Url::to(['index']); ?><?= Url::to(['order/index']); ?>">All orders</a></li>
+    <!-- <li class="<?//= Url::to() == '/order' ? 'active' : '' ?>"><a href="<?//= Url::to(['index']); ?><//?= Url::to(['order/index']); ?>">All orders</a></li> -->
+    <li class="<?= Url::to() == '/order' ? 'active' : '' ?>"><a href="<?= Url::to(['order/index']); ?>"><?= Yii::t('app', 'All orders') ?></a></li>
     <? foreach($statuses as $status) { ?>
         <li class="
         <?= isset(Yii::$app->request->get()['status']) ? (Yii::$app->request->get()['status'] == $status->id ? 'active' : '') : '' ?>
-        "><a href="<?= Url::to(['index', 'status' => $status->id]); ?>"><?= $status->name ?></a></li>
+        ">
+        <!-- <a href="<?//= Url::to(['index', 'status' => $status->id]); ?>"><//?= $status->name ?></a></li> -->
+        <a href="<?= Url::to(['index', 'status' => $status->id]); ?>"><?= Yii::t('app', $status->name) ?></a></li>
     <? } ?>
     <li class="pull-right custom-search">
       <form class="form-inline" action="/order" method="get">
@@ -62,13 +65,13 @@ $this->title = Yii::$app->name;
     <thead>
     <tr>
       <th>ID</th>
-      <th>User</th>
-      <th>Link</th>
-      <th>Quantity</th>
+      <th><?= Yii::t('app', 'User') ?></th>
+      <th><?= Yii::t('app', 'Link') ?></th>
+      <th><?= Yii::t('app', 'Quantity') ?></th>
       <th class="dropdown-th">
         <div class="dropdown">
           <button class="btn btn-th btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Service
+            <?= Yii::t('app', 'Service') ?>
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -79,11 +82,11 @@ $this->title = Yii::$app->name;
           </ul>
         </div>
       </th>
-      <th>Status</th>
+      <th><?= Yii::t('app', 'Status') ?></th>
       <th class="dropdown-th">
         <div class="dropdown">
           <button class="btn btn-th btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Mode
+            <?= Yii::t('app', 'Mode') ?>
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -94,7 +97,7 @@ $this->title = Yii::$app->name;
           </ul>
         </div>
       </th>
-      <th>Created</th>
+      <th><?= Yii::t('app', 'Created') ?></th>
     </tr>
     </thead>
     <tbody>
@@ -108,7 +111,7 @@ $this->title = Yii::$app->name;
       <td class="service">
         <span class="label-id"><?= $order->service->id ?></span> <?= $order->service->name ?>
       </td>
-      <td><?= $order->statusName->name ?></td>
+      <td><?= Yii::t('app', $order->statusName->name) ?></td>
       <td><?= $order->modeName->name ?></td>
       <td><span class="nowrap"><?= Yii::$app->formatter->asDate( $order->created_at )?></span><span class="nowrap"><?= Yii::$app->formatter->asTime( $order->created_at )?></span></td>
       </tr>

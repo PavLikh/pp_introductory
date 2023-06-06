@@ -34,6 +34,7 @@ AppAsset::register($this);
   <![endif]-->
 </head>
 <body>
+  <h1>test lang: <?= Yii::t('app', 'Hello eng')?></h1>
 <?php $this->beginBody() ?>
 <?= $content ?>
 <?php  $this->endBody() ?>

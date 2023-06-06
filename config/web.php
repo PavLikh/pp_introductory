@@ -67,6 +67,15 @@ $config = [
                 // '<module:(order)>/<action:(index)>' => '<module>/order/<action>',
             ],
         ],
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                    'sourceLanguage' => 'en'
+                ],
+            ],
+        ],
     ],
     'modules' => [
         'order' => [
