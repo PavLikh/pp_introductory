@@ -4,6 +4,9 @@ namespace app\modules\order\models;
 
 use yii\db\ActiveRecord;
 
+/**
+ *
+ */
 class Mode extends ActiveRecord
 {
 
