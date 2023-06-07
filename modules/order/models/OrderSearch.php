@@ -10,6 +10,14 @@ use yii\data\ActiveDataProvider;
 class OrderSearch extends Order
 {
     /**
+     *
+     */
+    const PAGESIZE = 100;
+    /**
+     *
+     */
+    const SEARCHFIELD = ['id' => 1, 'link' => 2, 'user' => 3];
+    /**
      * @var
      */
     public $searchType;
@@ -17,16 +25,6 @@ class OrderSearch extends Order
      * @var
      */
     public $search;
-
-    /**
-     * @var int[]
-     */
-    private $searchField = [
-        'id' => 1,
-        'link' => 2,
-        'user' => 3
-    ];
-
     /**
      * @return string[]
      */
@@ -62,17 +60,17 @@ class OrderSearch extends Order
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 5,
+                'pageSize' => $this::PAGESIZE,
             ],
         ]);
 
         if ( $this->load($params) ) {
             if ($this->validate()) {
-                if ($this->searchType == $this->searchField['id']) {
+                if ($this->searchType == $this::SEARCHFIELD['id']) {
                     $query->where(['id' => $this->search]);
-                } else if ($this->searchType == $this->searchField['link']) {
+                } else if ($this->searchType == $this::SEARCHFIELD['link']) {
                     $query->where(['like','link', $this->search] );
-                } else if ($this->searchType == $this->searchField['user']) {
+                } else if ($this->searchType == $this::SEARCHFIELD['user']) {
                     $query->where(['like','concatName', $this->search] );
                 }
             }
