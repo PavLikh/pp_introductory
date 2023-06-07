@@ -24,7 +24,6 @@ class OrderController extends Controller
         $dataProvider = $searchModel->search($this->request->queryParams);
         $orders = $dataProvider->getModels();
         $pagination = $dataProvider->getPagination();
-
         $serviceModel = new Service();
         $modeModel = new Mode();
         $statusModel = new Status();
