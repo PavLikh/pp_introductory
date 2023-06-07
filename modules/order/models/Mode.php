@@ -4,18 +4,23 @@ namespace app\modules\order\models;
 
 use yii\db\ActiveRecord;
 
+/**
+ *
+ */
 class Mode extends ActiveRecord
 {
+
     /**
-     * @inheritdock
+     * @return string
      */
     public static function tableName()
     {
         return 'mode';
     }
 
+
     /**
-     * @inheritdock
+     * @return array|ActiveRecord[]
      */
     public function getAll()
     {

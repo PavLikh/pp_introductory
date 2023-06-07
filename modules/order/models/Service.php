@@ -4,6 +4,9 @@ namespace app\modules\order\models;
 
 use yii\db\ActiveRecord;
 
+/**
+ *
+ */
 class Service extends ActiveRecord
 {
     /**
