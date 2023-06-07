@@ -3,6 +3,7 @@
 namespace app\modules\order\models;
 
 use yii\data\ActiveDataProvider;
+use Yii;
 
 /**
  *
@@ -13,10 +14,19 @@ class OrderSearch extends Order
      *
      */
     const PAGESIZE = 100;
+
     /**
      *
      */
-    const SEARCHFIELD = ['id' => 1, 'link' => 2, 'user' => 3];
+    const SEARCH_ID_TYPE = 1;
+    /**
+     *
+     */
+    const SEARCH_LINK_TYPE = 2;
+    /**
+     *
+     */
+    const SEARCH_USER_TYPE = 3;
     /**
      * @var
      */
@@ -66,11 +76,11 @@ class OrderSearch extends Order
 
         if ( $this->load($params) ) {
             if ($this->validate()) {
-                if ($this->searchType == $this::SEARCHFIELD['id']) {
+                if ($this->searchType == $this::SEARCH_ID_TYPE) {
                     $query->where(['id' => $this->search]);
-                } else if ($this->searchType == $this::SEARCHFIELD['link']) {
+                } else if ($this->searchType == $this::SEARCH_LINK_TYPE) {
                     $query->where(['like','link', $this->search] );
-                } else if ($this->searchType == $this::SEARCHFIELD['user']) {
+                } else if ($this->searchType == $this::SEARCH_USER_TYPE) {
                     $query->where(['like','concatName', $this->search] );
                 }
             }
@@ -87,4 +97,17 @@ class OrderSearch extends Order
         }
         return $dataProvider;
     }
+
+    /**
+     * @return array
+     */
+    public function getSearchTypes()
+    {
+        return [
+            $this::SEARCH_ID_TYPE => Yii::t('app', 'Order ID'),
+            $this::SEARCH_LINK_TYPE => Yii::t('app', 'Link'),
+            $this::SEARCH_USER_TYPE => Yii::t('app', 'Username'),
+        ];
+    }
+
 }
