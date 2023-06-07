@@ -14,7 +14,6 @@ $form = ActiveForm::begin(['options' => ['class' => 'form-inline', 'id' => 'test
     <span class="input-group-btn search-select-wrap">
 <?
 echo $form->field($modelForm, 'search')->textInput(['placeholder' => "Search orders"]);
-echo $form->field($modelForm, 'search1')->textInput(['placeholder' => "Search orders"]);
 $curSerchType = isset(Yii::$app->request->get()['searchType']) ? Yii::$app->request->get()['searchType'] : '';
 echo $form->field($modelForm, 'searchType')->dropdownList( [1 => 'Order ID', 2 => 'Link', 3 =>'Username'],
 

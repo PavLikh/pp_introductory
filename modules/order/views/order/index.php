@@ -14,8 +14,50 @@ use yii\helpers\Html;
 
 $this->title = Yii::$app->name;
 $curSerchType = isset(Yii::$app->request->get()['searchType']) ? Yii::$app->request->get()['searchType'] : '';
+?><!-- START TEST --><?
 
+echo "DataProvider: ";
+$i = 0; 
+foreach ($dataProvider as $item)
+{
+  if ($i < 0 ){
+    // echo $item->id;
+    var_dump($item);
+
+  } else {
+    break;
+  }
+  $i++;
+}
+echo '<br>';
+echo "orders1: ";
+$i = 0; 
+echo '<ul>';
+foreach ($orders1 as $order1) {
+  // if ($i < 2 ){
+    // echo $item->id;
+    //var_dump($order1->id); ?>
+<li><?= $order1->id ?> | <?= $order1->concatName ?></li>    
+
+ <? // } else {
+    // break;
+  // }
+  $i++;
+ }
+echo '</ul>';
 ?>
+    <div class="col-sm-8">
+      <div class="pagination">
+        <?= LinkPager::widget([ 'pagination' => $pagination1 ])?>
+      </div> 
+    </div>
+    <div class="col-sm-4 pagination-counters">
+      <?= $pagination1->getPage()+1 ?> to <?= $pagination1->getPageCount() ?> of <?= $pagination1->totalCount ?>
+    </div>
+<!-- END TEST -->
+
+
+
 <nav class="navbar navbar-fixed-top navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -86,7 +128,9 @@ $curSerchType = isset(Yii::$app->request->get()['searchType']) ? Yii::$app->requ
 
 
 <?// include 'test1.php'; ?>
-<? include 'test2.php'; ?>
+<?= $this->render('test2', ['modelForm'=>$searchModel]); ?>
+<?//= $this->render('test2', ['modelForm'=>$modelForm]); ?>
+<?// include 'test2.php'; ?>
 
       <form class="form-inline" action="/order" method="get">
         <div class="input-group">

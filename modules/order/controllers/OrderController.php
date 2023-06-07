@@ -26,17 +26,24 @@ class OrderController extends Controller
     {
         $modelForm = new SearchForm();
 
-        if ( $modelForm->load(Yii::$app->request->get())) {
-            if ($modelForm->validate() ) {
-                var_dump(Yii::$app->request->get());
-                var_dump($modelForm->search);
-                var_dump($modelForm->search1);
-                echo 'searchType: '; var_dump($modelForm->searchType);
-                // var_dump($modelForm->search());
-                echo 'Hi';
-                die();
-            }
-        }
+        $searchModel = new SearchForm();
+        $dataProvider = $searchModel->search1($this->request->queryParams);
+        $orders1 = $dataProvider->getModels();
+        $pagination1 = $dataProvider->getPagination();
+        // var_dump($dataProvider);
+
+        // if ( $modelForm->load(Yii::$app->request->get())) {
+        //     var_dump($this->request->queryParams);die();
+        //     if ($modelForm->validate() ) {
+        //         var_dump(Yii::$app->request->get());
+        //         var_dump($modelForm->search);
+        //         var_dump($modelForm->search1);
+        //         echo 'searchType: '; var_dump($modelForm->searchType);
+        //         // var_dump($modelForm->search());
+        //         echo 'Hi';
+        //         die();
+        //     }
+        // }
 
         $model = new Order();
         $serviceModel = new Service();
@@ -62,7 +69,7 @@ class OrderController extends Controller
         $orders = $model->prepare()['orders'];
         $pagination = $model->prepare()['pagination'];
         
-    return $this->render('index', compact('orders', 'services', 'modes', 'statuses', 'pagination', 'modelForm'));
+    return $this->render('index', compact('pagination1','orders1','dataProvider', 'orders', 'services', 'modes', 'statuses', 'pagination', 'searchModel', 'modelForm'));
     }
 
     // public function actionForm()
